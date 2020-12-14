@@ -1,12 +1,10 @@
 ---
-- name: Running on docker container
   hosts: localhost
   tasks:
   - name: copy main.js from S3 bucket
     shell: aws s3 cp s3://ramgaddebucket2/main.js .
 
 
-- name: update web servers
   hosts: webservers
   remote_user: ec2-user
   tasks:
