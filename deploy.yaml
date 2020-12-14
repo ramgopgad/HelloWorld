@@ -9,13 +9,7 @@
   become: true
   remote_user: ec2-user
   tasks:
-    - name: Reboot the prod webserver
-      reboot:
-        msg: "Reboot initiated by Ansible"
-        connect_timeout: 5
-        reboot_timeout: 600
-        pre_reboot_delay: 0
-        post_reboot_delay: 30
+
 
     - name: Move main.js to webserver
       copy:
