@@ -18,5 +18,9 @@
         group: ec2-user
         mode: '0644'
         follow: no
-    - name: start the web applicaion
-      shell: nohup node /main.js &
+    - name: reboot the server
+      reboot:
+        connect_timeout: 5
+        reboot_timeout: 600
+        pre_reboot_delay: 0
+        post_reboot_delay: 30
