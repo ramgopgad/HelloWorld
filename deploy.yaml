@@ -5,7 +5,7 @@
   tasks:
     - name: Install node.js
       yum:
-        name: node
+        name: npm
         state: latest
 
     - name: Check whether rc.local contains server start up command
