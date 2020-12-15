@@ -1,11 +1,4 @@
 ---
-- hosts: localhost
-  become: true
-  tasks:
-    - name: copy main.js from S3 bucket
-      shell: aws s3 cp s3://ramgaddebucket2/main.js .
-
-
 - hosts: webservers
   become: true
   remote_user: ec2-user
