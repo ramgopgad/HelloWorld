@@ -3,6 +3,25 @@
   become: true
   remote_user: ec2-user
   tasks:
+    - name: Install node.js
+      yum:
+        name: nodejs
+        state: latest
+
+    - name: Check whether rc.local contains server start up command
+      command: grep -Fxq node /etc/rc.local
+      register: checkmyconf
+      check_mode: no
+      ignore_errors: yes
+      changed_when: no
+
+    - name: Add node if it does not exist
+      shell: node /main.js & >> /etc/rc.local
+      when: checkmyconf.rc != 0
+
+    - name: Changing perm of /etc/rc.local, adding "+x"
+      file: dest=/etc/rc.local mode=a+x
+
     - name: Move main.js to webserver
       copy:
         src: main.js
@@ -11,6 +30,7 @@
         group: ec2-user
         mode: '0644'
         follow: no
+  
     - name: reboot the server
       shell: 'sleep 1 && shutdown -r now "Reboot triggered by Ansible" && sleep 1'
       async: 1
