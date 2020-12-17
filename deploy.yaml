@@ -5,11 +5,15 @@
   tasks:
     - name: setup nodejs repo
       shell: curl --silent --location https://rpm.nodesource.com/setup_12.x | bash -
+
+    - name: yum clean all
+      shell: yum clean all
       ignore_errors: yes
     
     - name: Install node.js
-      shell: yum -y install nodejs
-      ignore_errors: yes
+      yum:	      
+        name: nodejs
+        state: latest
 
     - name: Check whether rc.local contains server start up command
       command: grep node /etc/rc.local
