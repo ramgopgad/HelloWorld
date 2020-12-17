@@ -23,7 +23,7 @@ owners = ["amazon"] # Canonical
 }
 
 resource "aws_instance" "prod" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = data.aws_ami.prod_ami.id
   instance_type = "t3.micro"
 
   tags = {
