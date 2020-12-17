@@ -32,7 +32,7 @@ owners = ["amazon"] # Canonical
 resource "aws_instance" "prod" {
   ami           = data.aws_ami.prod_ami.id
   instance_type = "t3.micro"
-/  key_name      = "MyUSE1KP"
+  key_name      = "MyUSE1KP"
   
   tags = {
     Name = "HelloWorld"
