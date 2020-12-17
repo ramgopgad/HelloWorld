@@ -21,7 +21,7 @@
       ignore_errors: yes
 
     - name: Add node if it does not exist
-      shell: echo 'node /main.js' & >> /etc/rc.d/rc.local
+      shell: echo 'node /main.js &' >> /etc/rc.d/rc.local
       when: checkmyconf.rc == 1
 
     - name: Changing perm of /etc/rc.d/rc.local, adding "+x"
