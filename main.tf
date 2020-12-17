@@ -9,9 +9,6 @@ terraform {
     region = "us-east-1"
 }
 }
-module "helloworld"{
-source = "./."
-}
 
 data "aws_ami" "prod_ami" {
   most_recent = true
