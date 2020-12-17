@@ -26,6 +26,8 @@ owners = ["amazon"] # Canonical
   filter {
     name   = "name"
       values = ["MyUSE1KP"]
+    }
+   }
 
 resource "aws_instance" "prod" {
   ami           = data.aws_ami.prod_ami.id
