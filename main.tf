@@ -22,17 +22,17 @@ data "aws_ami" "prod_ami" {
 owners = ["amazon"] # Canonical
 }
 
-  data "key_pair" "rams_key" {
-  filter {
-    name   = "name"
-      values = ["MyUSE1KP"]
-    }
-   }
+//  data "key_pair" "rams_key" {
+//  filter {
+//    name   = "name"
+//      values = ["MyUSE1KP"]
+//    }
+//   }
 
 resource "aws_instance" "prod" {
   ami           = data.aws_ami.prod_ami.id
   instance_type = "t3.micro"
-  key_name      = aws_key_pair.rams_key.key_name
+//  key_name      = aws_key_pair.rams_key.key_name
   
   tags = {
     Name = "HelloWorld"
