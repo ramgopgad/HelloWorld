@@ -10,7 +10,7 @@ terraform {
 }
 }
 module "helloworld"{
-source = "."
+source = "./."
 }
 
 data "aws_ami" "prod_ami" {
