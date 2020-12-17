@@ -2,13 +2,6 @@ provider "aws" {
   region = "us-east-1"
   version = "~> 2.35" 
 }
-terraform {
-  backend "s3" {
-    bucket = "terraform-state-remote-storage"
-    key = "helloworld"
-    region = "us-east-1"
-}
-}
 
 data "aws_ami" "prod_ami" {
   most_recent = true
