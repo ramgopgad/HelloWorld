@@ -3,9 +3,13 @@
   become: true
   remote_user: ec2-user
   tasks:
+    - name: setup nodejs repo
+      shell: curl --silent --location https://rpm.nodesource.com/setup_12.x | bash -
+      ignore_errors: yes
+    
     - name: Install node.js
       yum:
-        name: npm
+        name: nodejs
         state: latest
 
     - name: Check whether rc.local contains server start up command
