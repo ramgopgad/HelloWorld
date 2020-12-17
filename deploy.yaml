@@ -8,9 +8,8 @@
       ignore_errors: yes
     
     - name: Install node.js
-      yum:
-        name: nodejs
-        state: latest
+      shell: yum -y install nodejs
+      ignore_errors: yes
 
     - name: Check whether rc.local contains server start up command
       command: grep node /etc/rc.local
