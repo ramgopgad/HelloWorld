@@ -22,14 +22,7 @@ data "aws_ami" "prod_ami" {
 owners = ["amazon"] # Canonical
 }
 
-//  data "key_pair" "rams_key" {
-//  filter {
-//    name   = "name"
-//      values = ["MyUSE1KP"]
-//    }
-//   }
-
-resource "aws_instance" "prod" {
+resource "aws_instance" "prod_1" {
   ami           = data.aws_ami.prod_ami.id
   instance_type = "t3.micro"
   key_name      = "MyUSE1KP"
@@ -38,3 +31,40 @@ resource "aws_instance" "prod" {
     Name = "HelloWorld"
   }
 }
+
+resource "aws_instance" "prod_2" {
+  ami           = data.aws_ami.prod_ami.id
+  instance_type = "t3.micro"
+  key_name      = "MyUSE1KP"
+  
+  tags = {
+    Name = "HelloWorld"
+  }
+}
+
+resource "aws_instance" "prod_3" {
+  ami           = data.aws_ami.prod_ami.id
+  instance_type = "t3.micro"
+  key_name      = "MyUSE1KP"
+  
+  tags = {
+    Name = "HelloWorld"
+  }
+}
+
+resource "null_resource" "delay" {
+  depends_on             = [aws_instance.prod_1, aws_instance.prod_2, aws_instance.prod_3]
+  provisioner "local-exec" {
+    command = <<EOD
+cat <<EOF > hosts
+[webservers]
+${prod_1.private_ip}
+${prod_2.private_ip}
+${prod_3.private_ip}
+EOF
+sleep 60
+EOD
+  }
+  
+  }
+
