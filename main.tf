@@ -69,3 +69,17 @@ EOD
   
   }
 
+
+output "PUB_1" {
+  value = aws_instance.prod_1.public_ip
+}
+
+output "PUB_2" {
+  value = aws_instance.prod_2.public_ip
+}
+
+output "PUB_3" {
+  value = aws_instance.prod_3.public_ip
+}
+
+
