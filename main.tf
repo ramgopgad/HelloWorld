@@ -21,26 +21,14 @@ data "aws_ami" "prod_ami" {
 owners = ["amazon"] # Canonical
 }
 
-data "aws_security_group" "LW3" {
-  groupId = var.LW3["LW3"]
-}
-
-variable "LW3" {
-  type = map
-  default = {
-    "LW3"  = "sg-04dfc513d1b7ac353"
-  }
-}
-
-
 resource "aws_instance" "prod_1" {
   ami           = data.aws_ami.prod_ami.id
   instance_type = "t3.micro"
   key_name      = "MyUSE1KP"
-  security_groups = [data.aws_security_group.LW3.id]
+  security_groups = [ "launch-wizard-3" ]
   
   tags = {
-    Name = "HelloWorld"
+    Name = "PROD_1"
   }
 }
 
@@ -48,10 +36,10 @@ resource "aws_instance" "prod_2" {
   ami           = data.aws_ami.prod_ami.id
   instance_type = "t3.micro"
   key_name      = "MyUSE1KP"
-  security_groups = [data.aws_security_group.LW3.id]
+  security_groups = [ "launch-wizard-3" ]
   
   tags = {
-    Name = "HelloWorld"
+    Name = "PROD_2"
   }
 }
 
@@ -59,10 +47,10 @@ resource "aws_instance" "prod_3" {
   ami           = data.aws_ami.prod_ami.id
   instance_type = "t3.micro"
   key_name      = "MyUSE1KP"
-  security_groups = [data.aws_security_group.LW3.id]
+  security_groups = [ "launch-wizard-3" ]
   
   tags = {
-    Name = "HelloWorld"
+    Name = "PROD_2"
   }
 }
 
