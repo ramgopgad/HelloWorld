@@ -44,7 +44,7 @@ resource "aws_instance" "prod_2" {
   ami           = data.aws_ami.prod_ami.id
   instance_type = "t3.micro"
   key_name      = "MyUSE1KP"
-  security_groups = "sg-04dfc513d1b7ac353"
+  security_groups = [data.aws_security_group.LW3.id]
   
   tags = {
     Name = "HelloWorld"
@@ -55,7 +55,7 @@ resource "aws_instance" "prod_3" {
   ami           = data.aws_ami.prod_ami.id
   instance_type = "t3.micro"
   key_name      = "MyUSE1KP"
-  security_groups = "sg-04dfc513d1b7ac353"
+  security_groups = [data.aws_security_group.LW3.id]
   
   tags = {
     Name = "HelloWorld"
