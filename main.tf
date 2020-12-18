@@ -50,7 +50,7 @@ resource "aws_instance" "prod_3" {
   security_groups = [ "launch-wizard-3" ]
   
   tags = {
-    Name = "PROD_2"
+    Name = "PROD_3"
   }
 }
 
