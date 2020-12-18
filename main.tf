@@ -22,11 +22,16 @@ owners = ["amazon"] # Canonical
 }
 
 data "aws_security_group" "LW3" {
-  filter {
-    name   = "id"
-      values = ["sg-04dfc513d1b7ac353"]
+  id = var.LW3["LW3"]
+}
+
+variable "LW3" {
+  type = map
+  default = {
+    "LW3"  = "sg-04dfc513d1b7ac353"
   }
-  }
+}
+
 
 resource "aws_instance" "prod_1" {
   ami           = data.aws_ami.prod_ami.id
