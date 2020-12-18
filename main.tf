@@ -18,7 +18,14 @@ data "aws_ami" "prod_ami" {
     name   = "name"
       values = ["amzn2-ami-hvm-2.0.20201126.0-x86_64-gp2"]
   }
-    
+  
+data "aws_security_group" "LW3" {
+  filter {
+    name   = "Group ID"
+      values = ["sg-04dfc513d1b7ac353"]
+  }
+  
+ 
 owners = ["amazon"] # Canonical
 }
 
@@ -26,7 +33,7 @@ resource "aws_instance" "prod_1" {
   ami           = data.aws_ami.prod_ami.id
   instance_type = "t3.micro"
   key_name      = "MyUSE1KP"
-  security_groups = "sg-04dfc513d1b7ac353"
+  security_groups = [data.aws_security_group.LW3.id]
   
   tags = {
     Name = "HelloWorld"
