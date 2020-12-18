@@ -22,7 +22,7 @@ owners = ["amazon"] # Canonical
 }
 
 data "aws_security_group" "LW3" {
-  id = var.LW3["LW3"]
+  groupId = var.LW3["LW3"]
 }
 
 variable "LW3" {
