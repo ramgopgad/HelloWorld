@@ -62,7 +62,8 @@ ${aws_instance.prod_1.private_ip}
 ${aws_instance.prod_2.private_ip}
 ${aws_instance.prod_3.private_ip}
 EOF
-sleep 60
+aws ec2 wait instance-status-ok --instance-ids ${aws_instance.prod_1.id} && aws ec2 wait instance-status-ok --instance-ids ${aws_instance.prod_2.id} && aws ec2 wait instance-status-ok --instance-ids ${aws_instance.prod_3.id}
+aws s3 cp hosts s3://ramgopkeys
 EOD
   }
   
