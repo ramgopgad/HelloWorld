@@ -23,7 +23,7 @@ owners = ["amazon"] # Canonical
 
 data "aws_security_group" "LW3" {
   filter {
-    name   = "Group ID"
+    name   = "id"
       values = ["sg-04dfc513d1b7ac353"]
   }
   }
