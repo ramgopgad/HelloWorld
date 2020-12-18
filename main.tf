@@ -58,9 +58,9 @@ resource "null_resource" "delay" {
     command = <<EOD
 cat <<EOF > hosts
 [webservers]
-${prod_1.private_ip}
-${prod_2.private_ip}
-${prod_3.private_ip}
+${aws_instance.prod_1.private_ip}
+${aws_instance.prod_2.private_ip}
+${aws_instance.prod_3.private_ip}
 EOF
 sleep 60
 EOD
